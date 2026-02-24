@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+    <title>Dashboard</title>
+
+    <style>
+
+        body {
+            font-family: Arial;
+        }
+
+        .high {
+            color: red;
+            font-weight: bold;
+        }
+
+        .medium {
+            color: orange;
+            font-weight: bold;
+        }
+
+        .low {
+            color: green;
+            font-weight: bold;
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+<h2>Dashboard</h2>
+
+<p>
+    Welcome,
+    <b th:text="${username}"></b>
+</p>
+
+<a href="/logout">Logout</a>
+
+<hr>
+
+
+<!-- ADD TASK -->
+
+<h3>Add Task</h3>
+
+<form action="/tasks" method="post">
+
+    <input type="text"
+           name="title"
+           placeholder="Enter task"
+           required>
+
+    <input type="date"
+           name="dueDate"
+           required>
+
+    <button type="submit">
+        Add Task
+    </button>
+
+</form>
+
+
+<hr>
+
+
+<!-- PENDING TASKS -->
+
+<h3>Pending Tasks</h3>
+
+<ul>
+
+<li th:each="task : ${pendingTasks}">
+
+    <input type="checkbox"
+           th:onclick="|window.location='/toggle/' + ${task.id}|">
+
+
+    <span th:text="${task.title}"></span>
+
+    |
+
+
+    <span th:text="${task.dueDate}"></span>
+
+    |
+
+
+    <span th:text="${task.priority}"
+          th:classappend="
+          ${task.priority == 'HIGH'} ? 'high' :
+          (${task.priority == 'MEDIUM'} ? 'medium' : 'low')">
+    </span>
+
+    |
+
+    <!-- DELETE BUTTON -->
+    <button th:onclick="|window.location='/delete/' + ${task.id}|">
+        Delete
+    </button>
+
+
+</li>
+
+</ul>
+
+
+<hr>
+
+
+<!-- COMPLETED TASKS -->
+
+<h3>Completed Tasks</h3>
+
+<ul>
+
+<li th:each="task : ${completedTasks}">
+
+    <input type="checkbox"
+           checked
+           th:onclick="|window.location='/toggle/' + ${task.id}|">
+
+
+    <strike th:text="${task.title}"></strike>
+
+    |
+
+    <span th:text="${task.dueDate}"></span>
+
+    |
+
+    <span th:text="${task.priority}"
+          th:classappend="
+          ${task.priority == 'HIGH'} ? 'high' :
+          (${task.priority == 'MEDIUM'} ? 'medium' : 'low')">
+    </span>
+
+    |
+
+    <!-- DELETE BUTTON -->
+    <button th:onclick="|window.location='/delete/' + ${task.id}|">
+        Delete
+    </button>
+
+
+</li>
+
+</ul>
+
+
+</body>
+
+</html>
