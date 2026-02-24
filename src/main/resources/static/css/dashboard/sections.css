@@ -1,0 +1,32 @@
+.section-header {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    margin-bottom: 10px;
+}
+
+
+.section-title {
+
+    font-size: 18px;
+
+    font-weight: 600;
+}
+
+
+.section-count {
+
+    font-size: 14px;
+
+    color: #64748b;
+
+    background: #e2e8f0;
+
+    padding: 4px 10px;
+
+    border-radius: 20px;
+}

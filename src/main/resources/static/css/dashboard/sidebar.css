@@ -1,0 +1,117 @@
+.sidebar
+{
+    width: 250px;
+
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+
+    background:linear-gradient(135deg, #0f766e, #5eead4);
+    color: white;
+
+    padding: 15px;
+
+    transition: width 0.3s ease;
+
+    overflow-y: auto;
+}
+
+.sidebar-header
+{
+    margin-bottom: 30px;
+}
+
+
+.logo
+{
+    font-weight: 600;
+    font-size: 18px;
+}
+
+
+.sidebar-link
+{
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    padding: 10px;
+    margin-bottom: 5px;
+
+    color: #cbd5e1;
+
+    text-decoration: none;
+
+    border-radius: 8px;
+}
+
+.sidebar-link.disabled
+{
+    pointer-events: none;
+
+    opacity: 0.5;
+
+    cursor: not-allowed;
+}
+
+.sidebar-link:hover
+{
+    background: #1f2937;
+    color: white;
+}
+
+
+.sidebar-link.active
+{
+    background: #2563eb;
+    color: white;
+}
+
+
+.logout
+{
+    color: #f87171;
+}
+
+.sidebar.collapsed
+{
+    width: 70px;
+}
+
+.wrapper.collapsed .sidebar
+{
+    width: 70px;
+}
+
+.wrapper.collapsed .main
+{
+    margin-left: 70px;
+}
+
+.sidebar.collapsed span
+{
+    display: none;
+}
+
+.logout:hover
+{
+    background: #7f1d1d;
+}
+
+/* PREVENT FLICKER */
+
+.sidebar-collapsed .wrapper .sidebar
+{
+    width: 70px;
+}
+
+.sidebar-collapsed .wrapper .main
+{
+    margin-left: 70px;
+}
+
+.sidebar-collapsed .sidebar span
+{
+    display: none;
+}

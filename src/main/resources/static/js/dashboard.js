@@ -1,3 +1,9 @@
+// SAVE SCROLL POSITION BEFORE PAGE RELOAD
+window.addEventListener("beforeunload", function ()
+{
+    localStorage.setItem("scrollPosition", window.scrollY);
+});
+
 function toggleTask(id) {
 
     window.location = "/toggle/" + id;
@@ -18,9 +24,23 @@ function deleteTask(id) {
 
 function toggleSidebar()
 {
-    document.querySelector(".wrapper").classList.toggle("collapsed");
+    const html = document.documentElement;
+    const wrapper = document.querySelector(".wrapper");
+    const sidebar = document.getElementById("sidebar");
 
-    document.getElementById("sidebar").classList.toggle("collapsed");
+    html.classList.toggle("sidebar-collapsed");
+    wrapper.classList.toggle("collapsed");
+    sidebar.classList.toggle("collapsed");
+
+    // save state
+    if(html.classList.contains("sidebar-collapsed"))
+    {
+        localStorage.setItem("sidebarCollapsed", "true");
+    }
+    else
+    {
+        localStorage.setItem("sidebarCollapsed", "false");
+    }
 }
 
 
@@ -48,3 +68,36 @@ document.getElementById("search")
             });
 
     });
+
+document.addEventListener("DOMContentLoaded", function()
+{
+    let today = new Date();
+
+    let minDate = today.toISOString().split("T")[0];
+
+    let due = document.getElementById("dueDate");
+
+    if(due)
+        due.setAttribute("min", minDate);
+});
+
+document.addEventListener("DOMContentLoaded", function()
+{
+    // RESTORE SIDEBAR
+    const collapsed = localStorage.getItem("sidebarCollapsed");
+
+    if(collapsed === "true")
+    {
+        document.querySelector(".wrapper").classList.add("collapsed");
+        document.getElementById("sidebar").classList.add("collapsed");
+    }
+
+
+    // RESTORE SCROLL POSITION
+    const scrollPosition = localStorage.getItem("scrollPosition");
+
+    if(scrollPosition !== null)
+    {
+        window.scrollTo(0, parseInt(scrollPosition));
+    }
+});

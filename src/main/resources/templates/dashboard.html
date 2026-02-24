@@ -5,7 +5,12 @@
 <head>
 
     <th:block th:replace="~{fragments/head :: head}"></th:block>
-
+    <script>
+        if(localStorage.getItem("sidebarCollapsed") === "true")
+        {
+            document.documentElement.classList.add("sidebar-collapsed");
+        }
+    </script>
     <title>
         Dashboard
     </title>
@@ -157,8 +162,15 @@
                          th:text="${task.title}">
                     </div>
 
-                    <div class="task-date"
-                         th:text="${task.dueDate}">
+                    <div class="task-date">
+
+                        <span th:text="${task.dueDate}"></span>
+
+                        <span class="task-badge"
+                              th:text="${task.remainingText}"
+                              th:classappend="' ' + ${task.remainingClass}">
+                        </span>
+
                     </div>
 
                 </div>

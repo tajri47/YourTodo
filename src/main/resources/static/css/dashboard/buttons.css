@@ -1,0 +1,107 @@
+.action-btn {
+
+    border: none;
+
+    width: 36px;
+    height: 36px;
+
+    border-radius: 8px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 16px;
+
+    cursor: pointer;
+
+    transition: all 0.2s ease;
+
+    position: relative;
+}
+
+
+/* COMPLETE */
+
+.complete-btn {
+
+    background: #dbeafe;
+    color: #2563eb;
+}
+
+.complete-btn:hover {
+
+    background: #2563eb;
+    color: white;
+}
+
+
+/* DELETE */
+
+.delete-btn {
+
+    background: #fee2e2;
+    color: #dc2626;
+}
+
+.delete-btn:hover {
+
+    background: #dc2626;
+    color: white;
+}
+
+
+/* UNDO */
+
+.undo-btn {
+
+    background: #ffedd5;
+    color: #ea580c;
+}
+
+.undo-btn:hover {
+
+    background: #ea580c;
+    color: white;
+}
+
+
+/* TOOLTIP */
+
+.action-btn::after {
+
+    content: attr(data-tooltip);
+
+    position: absolute;
+
+    bottom: 120%;
+    left: 50%;
+
+    transform: translateX(-50%) scale(0.8);
+
+    background: #111827;
+
+    color: white;
+
+    font-size: 12px;
+
+    padding: 4px 8px;
+
+    border-radius: 6px;
+
+    white-space: nowrap;
+
+    opacity: 0;
+
+    pointer-events: none;
+
+    transition: 0.2s ease;
+}
+
+
+.action-btn:hover::after {
+
+    opacity: 1;
+
+    transform: translateX(-50%) scale(1);
+}

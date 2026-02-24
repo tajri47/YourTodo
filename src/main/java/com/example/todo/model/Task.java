@@ -9,6 +9,8 @@ import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Transient;
 
+
+
 @Entity
 public class Task {
 
@@ -95,6 +97,46 @@ public class Task {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    @Transient
+    public long getDaysRemaining()
+    {
+        return ChronoUnit.DAYS.between(LocalDate.now(), this.dueDate);
+    }
+
+    @Transient
+    public String getRemainingText()
+    {
+        long days = getDaysRemaining();
+
+        if(days > 1)
+            return days + " days remaining";
+
+        if(days == 1)
+            return "1 day remaining";
+
+        if(days == 0)
+            return "Due today";
+
+        return Math.abs(days) + " days late";
+    }
+
+    @Transient
+    public String getRemainingClass()
+    {
+        long days = getDaysRemaining();
+
+        if(days > 1)
+            return "badge-safe";
+
+        if(days == 1)
+            return "badge-warning";
+
+        if(days == 0)
+            return "badge-danger";
+
+        return "badge-overdue";
     }
 
 

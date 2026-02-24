@@ -1,0 +1,48 @@
+.wrapper.collapsed .main {
+
+    margin-left: 70px;
+
+}
+
+.wrapper {
+    display: flex;
+}
+
+
+.main {
+
+    margin-left: 250px;
+
+    padding: 30px;
+
+    padding-bottom: 100px;
+
+    transition: margin-left 0.3s ease;
+
+}
+
+
+.completed {
+
+    opacity: 0.5;
+
+}
+
+
+.floating-btn {
+
+    position: fixed;
+
+    bottom: 30px;
+
+    right: 30px;
+
+    width: 60px;
+
+    height: 60px;
+
+    border-radius: 50%;
+
+}
+
+
