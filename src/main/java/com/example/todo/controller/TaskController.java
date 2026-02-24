@@ -46,6 +46,8 @@ public class TaskController {
 
         model.addAttribute("username", user.getUsername());
 
+        model.addAttribute("fullName", user.getFullName());
+
         return "dashboard";
     }
 

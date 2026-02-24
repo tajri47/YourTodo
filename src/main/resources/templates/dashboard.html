@@ -1,156 +1,291 @@
 <!DOCTYPE html>
+
 <html xmlns:th="http://www.thymeleaf.org">
 
 <head>
 
-    <title>Dashboard</title>
+    <th:block th:replace="~{fragments/head :: head}"></th:block>
 
-    <style>
-
-        body {
-            font-family: Arial;
-        }
-
-        .high {
-            color: red;
-            font-weight: bold;
-        }
-
-        .medium {
-            color: orange;
-            font-weight: bold;
-        }
-
-        .low {
-            color: green;
-            font-weight: bold;
-        }
-
-    </style>
+    <title>
+        Dashboard
+    </title>
 
 </head>
 
+
 <body>
 
-<h2>Dashboard</h2>
 
-<p>
-    Welcome,
-    <b th:text="${username}"></b>
-</p>
-
-<a href="/logout">Logout</a>
-
-<hr>
+<div class="wrapper">
 
 
-<!-- ADD TASK -->
+    <!-- SIDEBAR -->
 
-<h3>Add Task</h3>
-
-<form action="/tasks" method="post">
-
-    <input type="text"
-           name="title"
-           placeholder="Enter task"
-           required>
-
-    <input type="date"
-           name="dueDate"
-           required>
-
-    <button type="submit">
-        Add Task
-    </button>
-
-</form>
+    <th:block th:replace="~{fragments/sidebar :: sidebar}"></th:block>
 
 
-<hr>
+
+    <!-- MAIN -->
+
+    <div class="main container-fluid">
 
 
-<!-- PENDING TASKS -->
 
-<h3>Pending Tasks</h3>
+        <!-- TOPBAR -->
 
-<ul>
-
-<li th:each="task : ${pendingTasks}">
-
-    <input type="checkbox"
-           th:onclick="|window.location='/toggle/' + ${task.id}|">
+        <th:block th:replace="~{fragments/topbar :: topbar}"></th:block>
 
 
-    <span th:text="${task.title}"></span>
-
-    |
 
 
-    <span th:text="${task.dueDate}"></span>
+        <!-- STATS -->
+        <div class="row mt-4 g-4">
 
-    |
+            <!-- TOTAL -->
+            <div class="col-md-4">
+                <div class="stat-card stat-total">
 
+                    <div class="stat-icon">
+                        <i class="bi bi-list-check"></i>
+                    </div>
 
-    <span th:text="${task.priority}"
-          th:classappend="
-          ${task.priority == 'HIGH'} ? 'high' :
-          (${task.priority == 'MEDIUM'} ? 'medium' : 'low')">
-    </span>
+                    <div class="stat-info">
 
-    |
+                        <div class="stat-title">
+                            Total Tasks
+                        </div>
 
-    <!-- DELETE BUTTON -->
-    <button th:onclick="|window.location='/delete/' + ${task.id}|">
-        Delete
-    </button>
+                        <div class="stat-value"
+                            th:text="${pendingTasks.size() + completedTasks.size()}">
+                        </div>
 
+                    </div>
 
-</li>
-
-</ul>
-
-
-<hr>
-
-
-<!-- COMPLETED TASKS -->
-
-<h3>Completed Tasks</h3>
-
-<ul>
-
-<li th:each="task : ${completedTasks}">
-
-    <input type="checkbox"
-           checked
-           th:onclick="|window.location='/toggle/' + ${task.id}|">
+                </div>
+            </div>
 
 
-    <strike th:text="${task.title}"></strike>
+            <!-- PENDING -->
+            <div class="col-md-4">
+                <div class="stat-card stat-pending">
 
-    |
+                    <div class="stat-icon">
+                        <i class="bi bi-hourglass-split"></i>
+                    </div>
 
-    <span th:text="${task.dueDate}"></span>
+                    <div class="stat-info">
 
-    |
+                        <div class="stat-title">
+                            Pending
+                        </div>
 
-    <span th:text="${task.priority}"
-          th:classappend="
-          ${task.priority == 'HIGH'} ? 'high' :
-          (${task.priority == 'MEDIUM'} ? 'medium' : 'low')">
-    </span>
+                        <div class="stat-value"
+                            th:text="${pendingTasks.size()}">
+                        </div>
 
-    |
+                    </div>
 
-    <!-- DELETE BUTTON -->
-    <button th:onclick="|window.location='/delete/' + ${task.id}|">
-        Delete
-    </button>
+                </div>
+            </div>
 
 
-</li>
+            <!-- COMPLETED -->
+            <div class="col-md-4">
+                <div class="stat-card stat-completed">
 
-</ul>
+                    <div class="stat-icon">
+                        <i class="bi bi-check-circle"></i>
+                    </div>
+
+                    <div class="stat-info">
+
+                        <div class="stat-title">
+                            Completed
+                        </div>
+
+                        <div class="stat-value"
+                            th:text="${completedTasks.size()}">
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+
+
+
+        <!-- SEARCH -->
+
+        <div class="mt-4">
+
+            <input id="search"
+                   class="form-control"
+                   placeholder="Search tasks...">
+
+        </div>
+
+
+
+
+        <!-- PENDING TASKS HEADER -->
+
+        <div class="section-header mt-4">
+
+            <div class="section-title">
+                Pending Tasks
+            </div>
+
+            <div class="section-count"
+                 th:text="${pendingTasks.size()} + ' tasks'">
+            </div>
+
+        </div>
+
+
+        <!-- PENDING TASK LIST -->
+
+        <div class="task-list">
+
+            <div class="task-row"
+                 th:each="task : ${pendingTasks}">
+
+                <div class="task-left">
+
+                    <div class="task-title"
+                         th:text="${task.title}">
+                    </div>
+
+                    <div class="task-date"
+                         th:text="${task.dueDate}">
+                    </div>
+
+                </div>
+
+
+                <div class="task-actions">
+
+                    <button class="action-btn complete-btn"
+                            data-tooltip="Complete"
+                            th:onclick="|toggleTask(${task.id})|">
+
+                        <i class="bi bi-check-lg"></i>
+
+                    </button>
+
+                    <button class="action-btn delete-btn"
+                            data-tooltip="Delete"
+                            th:onclick="|deleteTask(${task.id})|">
+
+                        <i class="bi bi-trash"></i>
+
+                    </button>
+
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- COMPLETED HEADER -->
+
+        <div class="section-header mt-4">
+
+            <div class="section-title">
+                Completed Tasks
+            </div>
+
+            <div class="section-count"
+                 th:text="${completedTasks.size()} + ' tasks'">
+            </div>
+
+        </div>
+
+
+        <!-- COMPLETED LIST -->
+
+        <div class="task-list">
+
+            <div class="task-row completed"
+                 th:each="task : ${completedTasks}">
+
+                <div class="task-left">
+
+                    <div class="task-title">
+
+                        <strike th:text="${task.title}"></strike>
+
+                    </div>
+
+                    <div class="task-date"
+                         th:text="${task.dueDate}">
+                    </div>
+
+                </div>
+
+                <div class="task-actions">
+
+                    <button class="action-btn undo-btn"
+                            data-tooltip="Undo"
+                            th:onclick="|toggleTask(${task.id})|">
+
+                        <i class="bi bi-arrow-counterclockwise"></i>
+
+                    </button>
+
+                    <button class="action-btn delete-btn"
+                            data-tooltip="Delete"
+                            th:onclick="|deleteTask(${task.id})|">
+
+                        <i class="bi bi-trash"></i>
+
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+</div>
+
+
+
+
+<!-- FLOAT BUTTON -->
+
+
+<button class="btn btn-success floating-btn shadow"
+
+        data-bs-toggle="modal"
+
+        data-bs-target="#addModal">
+
+    +
+
+</button>
+
+
+
+
+<!-- ADD TASK MODAL -->
+
+
+<th:block th:replace="~{fragments/add-task-modal :: add-task-modal}"></th:block>
+
+
+
+
+<!-- JS -->
+
+
+<th:block th:replace="~{fragments/scripts :: scripts}"></th:block>
+
 
 
 </body>

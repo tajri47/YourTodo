@@ -1,0 +1,54 @@
+<div th:fragment="add-task-modal"
+     class="modal fade"
+     id="addModal">
+
+    <div class="modal-dialog">
+
+        <div class="modal-content">
+
+            <form action="/tasks"
+                  method="post">
+
+                <div class="modal-header">
+
+                    <h5>
+                        Add Task
+                    </h5>
+
+                </div>
+
+
+                <div class="modal-body">
+
+                    <input name="title"
+                           class="form-control mb-3"
+                           placeholder="Task title"
+                           required>
+
+
+                    <input type="date"
+                           name="dueDate"
+                           class="form-control"
+                           required>
+
+
+                </div>
+
+
+                <div class="modal-footer">
+
+                    <button class="btn btn-success">
+
+                        Add Task
+
+                    </button>
+
+                </div>
+
+            </form>
+
+        </div>
+
+    </div>
+
+</div>

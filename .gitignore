@@ -39,3 +39,8 @@ build/
 
 ### VS Code ###
 .vscode/
+# Python dump script
+dump_all.py
+
+# Generated dump file
+dump.txt
