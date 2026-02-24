@@ -1,5 +1,6 @@
 package com.example.todo.config;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -9,8 +10,13 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 
 import org.springframework.security.web.SecurityFilterChain;
 
+import com.example.todo.service.GoogleOAuth2SuccessHandler;
+
 @Configuration
 public class SecurityConfig {
+
+    @Autowired
+    private GoogleOAuth2SuccessHandler successHandler;
 
     @Bean
     public PasswordEncoder passwordEncoder(){
@@ -37,6 +43,11 @@ public class SecurityConfig {
             .loginProcessingUrl("/login")
             .defaultSuccessUrl("/dashboard", true)
             .permitAll()
+        )
+
+        .oauth2Login(oauth -> oauth
+            .loginPage("/login")
+            .successHandler(successHandler)
         )
 
         .logout(logout -> logout
