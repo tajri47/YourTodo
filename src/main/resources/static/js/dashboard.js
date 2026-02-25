@@ -4,10 +4,10 @@ window.addEventListener("beforeunload", function ()
     localStorage.setItem("scrollPosition", window.scrollY);
 });
 
-function toggleTask(id) {
-
-    window.location = "/toggle/" + id;
-
+function toggleTask(id)
+{
+    fetch("/toggle/" + id)
+    .then(() => location.reload());
 }
 
 

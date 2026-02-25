@@ -72,15 +72,13 @@ public class TaskController {
 
 
     @GetMapping("/toggle/{id}")
-    public String toggleTask(@PathVariable Long id) {
+    public void toggleTask(@PathVariable Long id) {
 
         Task task = taskService.getById(id);
 
         task.setCompleted(!task.isCompleted());
 
         taskService.save(task);
-
-        return "redirect:/dashboard";
     }
 
 
