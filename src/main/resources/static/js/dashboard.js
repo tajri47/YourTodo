@@ -102,7 +102,7 @@ document.addEventListener("DOMContentLoaded", function()
     }
 });
 
-/* DARK MODE TOGGLE */
+//DARK MODE TOGGLE
 
 function toggleDarkMode()
 {
@@ -115,7 +115,7 @@ function toggleDarkMode()
 }
 
 
-/* LOAD SAVED MODE */
+//LOAD SAVED MODE
 
 document.addEventListener("DOMContentLoaded", function()
 {

@@ -56,7 +56,7 @@ public class TaskController {
 
     @PostMapping("/tasks")
     public String addTask(@ModelAttribute Task task,
-                          Principal principal) {
+                        Principal principal) {
 
         User user = userService.findByUsername(principal.getName());
         task.setUser(user);

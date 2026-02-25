@@ -179,8 +179,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
         submitBtn.disabled =
             !(usernameValid &&
-              passwordValid &&
-              matchValid);
+                passwordValid &&
+                matchValid);
 
     }
 
