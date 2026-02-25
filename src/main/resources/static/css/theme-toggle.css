@@ -1,0 +1,49 @@
+/* THEME TOGGLE BUTTON */
+
+.theme-toggle-btn
+{
+    width: 100%;
+    border: none;
+
+    background: transparent;
+
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    padding: 10px;
+    margin-bottom: 5px;
+
+    border-radius: 8px;
+
+    color: #cbd5e1;
+
+    text-decoration: none;
+
+    transition: 0.2s;
+}
+
+
+.theme-toggle-btn:hover
+{
+    background: #1f2937;
+    color: white;
+}
+
+
+.theme-toggle-btn i
+{
+    font-size: 18px;
+}
+
+body.dark-mode
+{
+    background: #0f172a;
+    color: #e2e8f0;
+}
+
+
+body.dark-mode .main
+{
+    background: #0f172a;
+}

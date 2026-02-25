@@ -1,0 +1,174 @@
+/* DARK MODE VARIABLES */
+
+.dark-mode
+{
+    --bg-main: #0f172a;
+    --bg-card: #1e293b;
+    --bg-hover: #334155;
+
+    --text-main: #f1f5f9;
+    --text-muted: #cbd5e1;
+
+    --border: #334155;
+}
+
+
+
+/* BODY */
+
+.dark-mode body
+{
+    background: var(--bg-main);
+    color: var(--text-main);
+}
+
+
+
+/* MAIN */
+
+.dark-mode .main
+{
+    background: var(--bg-main);
+}
+
+
+
+/* CARDS */
+
+.dark-mode .stat-card,
+.dark-mode .task-list
+{
+    background: var(--bg-card);
+    color: var(--text-main);
+}
+
+
+
+/* STAT TEXT */
+
+.dark-mode .stat-title
+{
+    color: var(--text-muted);
+}
+
+
+.dark-mode .stat-value
+{
+    color: var(--text-main);
+}
+
+
+
+/* SECTION HEADER */
+
+.dark-mode .section-title
+{
+    color: var(--text-main);
+}
+
+
+.dark-mode .section-count
+{
+    background: var(--bg-hover);
+    color: var(--text-main);
+}
+
+
+
+/* TASK TEXT */
+
+.dark-mode .task-title
+{
+    color: var(--text-main);
+}
+
+
+.dark-mode .task-date
+{
+    color: var(--text-muted);
+}
+
+
+
+/* SEARCH INPUT */
+
+.dark-mode .form-control
+{
+    background: var(--bg-card);
+    color: var(--text-main);
+    border: 1px solid var(--border);
+}
+
+
+.dark-mode .form-control::placeholder
+{
+    color: var(--text-muted);
+}
+
+
+
+/* TOPBAR TEXT */
+
+.dark-mode .topbar h4,
+.dark-mode .topbar small
+{
+    color: var(--text-main);
+}
+
+
+
+/* TASK ROW */
+
+.dark-mode .task-row
+{
+    border-bottom: 1px solid var(--border);
+}
+
+
+.dark-mode .task-row:hover
+{
+    background: var(--bg-hover);
+}
+
+
+
+/* MODAL */
+
+.dark-mode .modal-content
+{
+    background: var(--bg-card);
+    color: var(--text-main);
+}
+
+/* FIX BOOTSTRAP MUTED TEXT */
+
+.dark-mode .text-muted
+{
+    color: #94a3b8 !important;
+}
+
+/* SIDEBAR DARK MODE */
+
+.dark-mode .sidebar
+{
+    background: linear-gradient(135deg, #05524c, #10b8a2);
+}
+
+
+/* FLOATING BUTTON DARK MODE */
+
+.dark-mode .floating-btn
+{
+    background: linear-gradient(135deg, #0b5e57, #06c2a9);
+    border: none;
+}
+
+.dark-mode .floating-btn:hover
+{
+    background: linear-gradient(135deg, #0a4f49, #14b8a6);
+}
+
+.dark-mode .sidebar-link:hover
+{
+    background: rgba(255,255,255,0.08);
+}

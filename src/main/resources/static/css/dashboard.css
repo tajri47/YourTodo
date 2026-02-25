@@ -13,3 +13,7 @@
 @import url("dashboard/buttons.css");
 
 @import url("dashboard/badges.css");
+
+@import url("dark.css");
+
+@import url("dashboard/theme-toggle.css");/*dark mode switch*/

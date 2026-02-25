@@ -101,3 +101,26 @@ document.addEventListener("DOMContentLoaded", function()
         window.scrollTo(0, parseInt(scrollPosition));
     }
 });
+
+/* DARK MODE TOGGLE */
+
+function toggleDarkMode()
+{
+    document.body.classList.toggle("dark-mode");
+
+    localStorage.setItem(
+        "darkMode",
+        document.body.classList.contains("dark-mode")
+    );
+}
+
+
+/* LOAD SAVED MODE */
+
+document.addEventListener("DOMContentLoaded", function()
+{
+    if(localStorage.getItem("darkMode") === "true")
+    {
+        document.body.classList.add("dark-mode");
+    }
+});
