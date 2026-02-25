@@ -101,7 +101,7 @@
 
 .action-btn:hover::after {
 
-    opacity: 1;
+    opacity: .8;
 
     transform: translateX(-50%) scale(1);
 }

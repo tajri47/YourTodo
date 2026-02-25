@@ -1,0 +1,61 @@
+<div th:fragment="completed">
+    <!-- COMPLETED TASK HEADER-->
+
+    <div class="section-header mt-4">
+
+        <div class="section-title">
+            Completed Tasks
+        </div>
+
+        <div class="section-count"
+            th:text="${completedTasks.size()} + ' tasks'">
+        </div>
+
+    </div>
+
+
+    <!-- COMPLETED LIST -->
+
+    <div class="task-list">
+
+        <div class="task-row completed"
+            th:each="task : ${completedTasks}">
+
+            <div class="task-left">
+
+                <div class="task-title">
+
+                    <strike th:text="${task.title}"></strike>
+
+                </div>
+
+                <div class="task-date"
+                    th:text="${task.dueDate}">
+                </div>
+
+            </div>
+
+            <div class="task-actions">
+
+                <button class="action-btn undo-btn"
+                        data-tooltip="Undo"
+                        th:onclick="|toggleTask(${task.id})|">
+
+                    <i class="bi bi-arrow-counterclockwise"></i>
+
+                </button>
+
+                <button class="action-btn delete-btn"
+                        data-tooltip="Delete"
+                        th:onclick="|deleteTask(${task.id})|">
+
+                    <i class="bi bi-trash"></i>
+
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+</div>

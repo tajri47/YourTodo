@@ -1,0 +1,76 @@
+<div th:fragment="stats">
+    <div class="row mt-4 g-4">
+
+        <!-- TOTAL -->
+        <div class="col-md-4">
+            <div class="stat-card stat-total">
+
+                <div class="stat-icon">
+                    <i class="bi bi-list-check"></i>
+                </div>
+
+                <div class="stat-info">
+
+                    <div class="stat-title">
+                        Total Tasks
+                    </div>
+
+                    <div class="stat-value"
+                        th:text="${pendingTasks.size() + completedTasks.size()}">
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+
+
+        <!-- PENDING -->
+        <div class="col-md-4">
+            <div class="stat-card stat-pending">
+
+                <div class="stat-icon">
+                    <i class="bi bi-hourglass-split"></i>
+                </div>
+
+                <div class="stat-info">
+
+                    <div class="stat-title">
+                        Pending
+                    </div>
+
+                    <div class="stat-value"
+                        th:text="${pendingTasks.size()}">
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+
+
+        <!-- COMPLETED -->
+        <div class="col-md-4">
+            <div class="stat-card stat-completed">
+
+                <div class="stat-icon">
+                    <i class="bi bi-check-circle"></i>
+                </div>
+
+                <div class="stat-info">
+
+                    <div class="stat-title">
+                        Completed
+                    </div>
+
+                    <div class="stat-value"
+                        th:text="${completedTasks.size()}">
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+</div>
