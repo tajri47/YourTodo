@@ -55,10 +55,9 @@
     cursor: not-allowed;
 }
 
-.sidebar-link:hover
+.sidebar .sidebar-link:hover
 {
-    background: #1f2937;
-    color: white;
+    background: rgba(255,255,255,0.08);
 }
 
 
@@ -71,7 +70,9 @@
 
 .logout
 {
-    color: #f87171;
+    color: #ff0404;
+    margin-top: 20px;
+    border: 1px solid rgba(248,113,113,0.3);
 }
 
 .sidebar.collapsed
@@ -96,7 +97,8 @@
 
 .logout:hover
 {
-    background: #7f1d1d;
+    background: rgba(255,255,255,0.08);
+
 }
 
 /* PREVENT FLICKER */

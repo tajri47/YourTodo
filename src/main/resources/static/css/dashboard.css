@@ -4,6 +4,8 @@
 
 @import url("dashboard/sidebar.css");
 
+@import url("dashboard/topbar.css");
+
 @import url("dashboard/stat-cards.css");
 
 @import url("dashboard/sections.css");
@@ -15,5 +17,3 @@
 @import url("dashboard/badges.css");
 
 @import url("dark.css");
-
-@import url("dashboard/theme-toggle.css");/*dark mode switch*/
