@@ -58,4 +58,15 @@ public class TaskService {
         return Sort.by("dueDate").ascending();
     }
 
+    // Delete All buttons
+    public void deleteAllPendingTasks(User user) {
+        List<Task> pendingTasks = repo.findByUserAndCompleted(user, false);
+        repo.deleteAll(pendingTasks);
+    }
+
+    public void deleteAllCompletedTasks(User user) {
+        List<Task> completedTasks = repo.findByUserAndCompleted(user, true);
+        repo.deleteAll(completedTasks);
+    }
+
 }

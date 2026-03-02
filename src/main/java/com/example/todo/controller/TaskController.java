@@ -87,4 +87,20 @@ public class TaskController {
         return "redirect:/dashboard";
     }
 
+    // delete all
+
+    @GetMapping("/tasks/deleteAllPending")
+    public String deleteAllPending(Principal principal) {
+        User user = userService.findByUsername(principal.getName());
+        taskService.deleteAllPendingTasks(user);
+        return "redirect:/dashboard";
+    }
+
+    @GetMapping("/tasks/deleteAllCompleted")
+    public String deleteAllCompleted(Principal principal) {
+        User user = userService.findByUsername(principal.getName());
+        taskService.deleteAllCompletedTasks(user);
+        return "redirect:/dashboard";
+    }
+
 }
