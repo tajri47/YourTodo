@@ -4,13 +4,31 @@
 
     <div class="section-header mt-4">
 
-        <div class="section-title">
-            Pending Tasks
+        <div class="section-info">
+            <div class="section-title">
+                Pending Tasks
+            </div>
+
+            <div class="section-count" th:text="${pendingTasks.size()} + ' tasks'">
+            </div>
         </div>
 
-        <div class="section-count"
-            th:text="${pendingTasks.size()} + ' tasks'">
-        </div>
+        <form method="get" action="/dashboard" class="sort-form">
+            <input type="hidden" name="PendingSort" th:value="${PendingSort}" />
+
+            <select name="pendingSort" class="sort-select" onchange="this.form.submit()">
+
+                <option value="asc" th:selected="${pendingSort == 'asc'}">
+                    Due Date ↑
+                </option>
+
+                <option value="desc" th:selected="${pendingSort == 'desc'}">
+                    Due Date ↓
+                </option>
+
+            </select>
+
+        </form>
 
     </div>
 
@@ -19,21 +37,18 @@
 
     <div class="task-list">
 
-        <div class="task-row"
-            th:each="task : ${pendingTasks}">
+        <div class="task-row" th:each="task : ${pendingTasks}">
 
             <div class="task-left">
 
-                <div class="task-title"
-                    th:text="${task.title}">
+                <div class="task-title" th:text="${task.title}">
                 </div>
 
                 <div class="task-date">
 
                     <span th:text="${task.dueDate}"></span>
 
-                    <span class="task-badge"
-                        th:text="${task.remainingText}"
+                    <span class="task-badge" th:text="${task.remainingText}"
                         th:classappend="' ' + ${task.remainingClass}">
                     </span>
 
@@ -44,17 +59,13 @@
 
             <div class="task-actions">
 
-                <button class="action-btn complete-btn"
-                        data-tooltip="Complete"
-                        th:onclick="|toggleTask(${task.id})|">
+                <button class="action-btn complete-btn" data-tooltip="Complete" th:onclick="|toggleTask(${task.id})|">
 
                     <i class="bi bi-check-lg"></i>
 
                 </button>
 
-                <button class="action-btn delete-btn"
-                        data-tooltip="Delete"
-                        th:onclick="|deleteTask(${task.id})|">
+                <button class="action-btn delete-btn" data-tooltip="Delete" th:onclick="|deleteTask(${task.id})|">
 
                     <i class="bi bi-trash"></i>
 

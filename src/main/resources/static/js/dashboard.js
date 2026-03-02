@@ -11,14 +11,13 @@ function toggleTask(id)
 }
 
 
-function deleteTask(id) {
-
-    if (confirm("Delete task?")) {
-
-        window.location = "/delete/" + id;
-
+function deleteTask(id)
+{
+    if(confirm("Delete task?"))
+    {
+        fetch("/delete/" + id)
+        .then(() => location.reload());
     }
-
 }
 
 

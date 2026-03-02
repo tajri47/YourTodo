@@ -29,18 +29,22 @@ public class TaskController {
     @Autowired
     private UserService userService;
 
-
-
-
     @GetMapping("/dashboard")
-    public String dashboard(Model model, Principal principal) {
+    public String dashboard(
+            Model model,
+            Principal principal,
+            @RequestParam(required = false) String pendingSort,
+            @RequestParam(required = false) String completedSort) {
 
         User user = userService.findByUsername(principal.getName());
         model.addAttribute("pendingTasks",
-                taskService.getPendingTasks(user));
+                taskService.getPendingTasks(user, pendingSort));
 
         model.addAttribute("completedTasks",
-                taskService.getCompletedTasks(user));
+                taskService.getCompletedTasks(user, completedSort));
+
+        model.addAttribute("pendingSort", pendingSort);
+        model.addAttribute("completedSort", completedSort);
 
         model.addAttribute("task", new Task());
 
@@ -51,12 +55,9 @@ public class TaskController {
         return "dashboard";
     }
 
-
-
-
     @PostMapping("/tasks")
     public String addTask(@ModelAttribute Task task,
-                        Principal principal) {
+            Principal principal) {
 
         User user = userService.findByUsername(principal.getName());
         task.setUser(user);
@@ -68,9 +69,6 @@ public class TaskController {
         return "redirect:/dashboard";
     }
 
-
-
-
     @GetMapping("/toggle/{id}")
     public void toggleTask(@PathVariable Long id) {
 
@@ -80,9 +78,6 @@ public class TaskController {
 
         taskService.save(task);
     }
-
-
-
 
     @GetMapping("/delete/{id}")
     public String deleteTask(@PathVariable Long id) {

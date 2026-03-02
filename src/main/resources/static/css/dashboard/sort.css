@@ -1,0 +1,30 @@
+.sort-form
+{
+    display: flex;
+    align-items: center;
+    margin-left: auto;
+}
+
+.sort-select
+{
+    padding: 6px 14px;
+    border-radius: 8px;
+    border: 1px solid #d1d5db;
+    background: #ffffff;
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.sort-select:hover
+{
+    border-color: #0f766e;
+}
+
+.sort-select:focus
+{
+    outline: none;
+    border-color: #0f766e;
+    box-shadow: 0 0 0 2px rgba(15,118,110,0.2);
+}
