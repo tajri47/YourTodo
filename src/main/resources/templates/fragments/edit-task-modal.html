@@ -1,0 +1,39 @@
+<div th:fragment="edit-task-modal" class="modal fade" id="editModal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <form id="editTaskForm" method="post">
+        <div class="modal-header">
+          <h5>Edit Task</h5>
+        </div>
+
+        <div class="modal-body">
+          <input type="hidden" name="id" id="editTaskId" />
+
+          <input
+            name="title"
+            id="editTitle"
+            class="form-control mb-3"
+            placeholder="Task title"
+            required
+          />
+
+          <div class="mb-3">
+            <label class="form-label"> Due Date </label>
+
+            <input
+              type="date"
+              name="dueDate"
+              id="editDueDate"
+              class="form-control"
+              required
+            />
+          </div>
+        </div>
+
+        <div class="modal-footer">
+          <button class="btn btn-primary">Save Changes</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

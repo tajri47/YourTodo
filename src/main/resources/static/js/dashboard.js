@@ -75,9 +75,13 @@ document.addEventListener("DOMContentLoaded", function()
     let minDate = today.toISOString().split("T")[0];
 
     let due = document.getElementById("dueDate");
+    let editDue = document.getElementById("editDueDate");
 
     if(due)
         due.setAttribute("min", minDate);
+
+    if(editDue)
+        editDue.setAttribute("min", minDate);
 });
 
 document.addEventListener("DOMContentLoaded", function()
@@ -123,3 +127,21 @@ document.addEventListener("DOMContentLoaded", function()
         document.body.classList.add("dark-mode");
     }
 });
+
+//EDIT
+function openEditModal(button)
+{
+    const id = button.getAttribute("data-id");
+    const title = button.getAttribute("data-title");
+    const date = button.getAttribute("data-date");
+
+    document.getElementById("editTaskId").value = id;
+    document.getElementById("editTitle").value = title;
+    document.getElementById("editDueDate").value = date;
+
+    const form = document.getElementById("editTaskForm");
+    form.action = "/update/" + id;
+
+    const modal = new bootstrap.Modal(document.getElementById("editModal"));
+    modal.show();
+}

@@ -9,8 +9,10 @@
 package com.example.todo.controller;
 
 import java.security.Principal;
+import java.time.LocalDate;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -100,6 +102,21 @@ public class TaskController {
     public String deleteAllCompleted(Principal principal) {
         User user = userService.findByUsername(principal.getName());
         taskService.deleteAllCompletedTasks(user);
+        return "redirect:/dashboard";
+    }
+
+    // edit
+    @PostMapping("/update/{id}")
+    public String updateTask(@PathVariable Long id,
+            @RequestParam String title,
+            @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate dueDate) {
+        Task task = taskService.getById(id);
+
+        task.setTitle(title);
+        task.setDueDate(dueDate);
+
+        taskService.save(task);
+
         return "redirect:/dashboard";
     }
 

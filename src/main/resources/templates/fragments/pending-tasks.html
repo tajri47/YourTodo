@@ -71,6 +71,14 @@
 
                 </button>
 
+                <button class="action-btn edit-btn" data-tooltip="Edit" th:attr="data-id=${task.id},
+                 data-title=${task.title},
+                 data-date=${task.dueDate}" onclick="openEditModal(this)">
+
+                    <i class="bi bi-pencil"></i>
+
+                </button>
+
             </div>
 
         </div>
